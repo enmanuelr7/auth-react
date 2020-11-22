@@ -23,7 +23,7 @@ const Dashboard = () => {
             <Card>
                 <Card.Body>
                     <h2 className="text-center">
-                        Welcome {currentUser.email}!
+                        Hello {currentUser.email}!
                     </h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
