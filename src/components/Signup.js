@@ -15,6 +15,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+    setError('')
     const email = emailRef.current.value
     const password = passwordRef.current.value
     const passWordConfirm = passwordConfirmRef.current.value
@@ -25,14 +26,14 @@ const Signup = () => {
     }
 
     try {
-      setError('')
       await signup(email, password)
+      setLoading(false)
       history.push('/')
     } catch (error) {
+      setLoading(false)
       setError(error.message)
     }
 
-    setLoading(false)
 
   }
 

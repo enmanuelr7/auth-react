@@ -9,13 +9,13 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  const signup = (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password)
-  }
+  const signup = (email, password) => auth.createUserWithEmailAndPassword(email, password)
 
-  const login = (email, password) => {
-    return auth.signInWithEmailAndPassword(email, password)
-  }
+  const login = (email, password) => auth.signInWithEmailAndPassword(email, password)
+
+  const logout = () => auth.signOut()
+
+  const resetPassword = (email) => auth.sendPasswordResetEmail(email)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -29,7 +29,9 @@ export const AuthProvider = ({ children }) => {
   const value = {
     currentUser,
     signup,
-    login
+    login,
+    logout,
+    resetPassword
   }
 
   return (
