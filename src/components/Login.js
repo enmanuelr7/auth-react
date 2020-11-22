@@ -3,13 +3,12 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom' 
 import { useAuth } from '../contexts/AuthContext'
 
-const Signup = () => {
+const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const {signup} = useAuth()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const { login } = useAuth()
   const history = useHistory()
 
   const handleSubmit = async (e) => {
@@ -17,16 +16,10 @@ const Signup = () => {
     setLoading(true)
     const email = emailRef.current.value
     const password = passwordRef.current.value
-    const passWordConfirm = passwordConfirmRef.current.value
-
-    if (password !== passWordConfirm) {
-      setLoading(false)
-      return setError('Passwords do not match')
-    }
 
     try {
       setError('')
-      await signup(email, password)
+      await login(email, password)
       history.push('/')
     } catch (error) {
       setError(error.message)
@@ -40,7 +33,7 @@ const Signup = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
+          <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
@@ -55,25 +48,17 @@ const Signup = () => {
                 required
               ></Form.Control>
             </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control
-                type="password"
-                ref={passwordConfirmRef}
-                required
-              ></Form.Control>
-            </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              {loading ? 'Loading' : 'Sign Up'}
+              {loading ? 'Loading' : 'Log In'}
             </Button>
           </Form>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Already have an account ? {<Link to="/login">Log In</Link>}
+        You do not have an account? {<Link to="/signup">Sign Up</Link>}
       </div>
     </>
   );
 };
 
-export default Signup;
+export default Login;
