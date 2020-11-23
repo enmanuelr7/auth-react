@@ -10,6 +10,7 @@ import ForgotPassword from './components/ForgotPassword'
 import UpdateProfile from "./components/UpdateProfile";
 
 function App() {
+  console.log(process.env.NODE_ENV)
   return (
     <Container
     className="d-flex align-items-center justify-content-center"
