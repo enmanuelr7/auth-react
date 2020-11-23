@@ -15,7 +15,6 @@ if (process.env.NODE_ENV === 'production') {
     measurementId: "G-3C4376CMKN",
   };
 
-  firebase.analytics();
 } else if (process.env.NODE_ENV === 'development') {
   firebaseConfig = {
     apiKey: "AIzaSyAq6_ruQsjYPJTVbSOTq15q_PW6N0cmLU8",
