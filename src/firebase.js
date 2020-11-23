@@ -28,5 +28,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const app = firebase.initializeApp(firebaseConfig);
+if (process.env.NODE_ENV === 'production') firebase.analytics();
 export default app;
 export const auth = firebase.auth();
