@@ -27,7 +27,6 @@ const Signup = () => {
 
     try {
       await signup(email, password)
-      setLoading(false)
       history.push('/')
     } catch (error) {
       setLoading(false)

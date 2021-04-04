@@ -20,14 +20,11 @@ const Login = () => {
 
     try {
       await login(email, password)
-      setLoading(false)
       history.push('/')
     } catch (error) {
       setLoading(false)
       setError(error.message)
     }
-
-
   }
 
   return (
